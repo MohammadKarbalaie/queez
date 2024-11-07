@@ -6,7 +6,7 @@ import { RootState } from '../redux/store';
 import Link from 'next/link';
 import { removeFromCart } from '../redux/CartSlice';
 import { AiFillCheckSquare } from 'react-icons/ai';
-import Image from 'next/image';
+
 
 interface CartItem {
   id: number; 
@@ -25,7 +25,7 @@ const CartPage: React.FC = () => {
       {cartItems.map((item: CartItem) => (
         <div key={item.id} className='flex gap-2 border-b-2 border-black px-10 py-4'>
           <div className='flex flex-col mr-4'>
-            <Image src={item.images} alt={item.title} width={150} height={150} className='mx-auto w-20 rounded-full border' />
+            <img src={item.images} alt={item.title} width={150} height={150} className='mx-auto w-20 rounded-full border' />
           </div>
           <div className='flex flex-col gap-1 items-start justify-center'>
             <h3 className='font-semibold text-lg'>{item.title}</h3>
@@ -35,7 +35,7 @@ const CartPage: React.FC = () => {
         </div>
       ))}
       {cartItems.length > 0 && (
-        <Link href="/checkout">
+        <Link href="/Checkout">
           <button className="mt-4 w-32 bg-blue-500 text-white p-2 rounded">
             <p className='flex items-center gap-2'>Checkout <AiFillCheckSquare /></p>
           </button>

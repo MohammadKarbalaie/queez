@@ -26,14 +26,18 @@ function CartLink() {
 
 export default function Home() {  
   return (  
-    <div className="flex">  
-      <CartLink />  
-      <div className="w-2/12">  
+    <div className="flex flex-col">  
+     <div className="flex items-end  justify-end py-6 text-white bg-sky-600">
+        <p className="px-4"><CartLink /> </p>
+     </div> 
+     <div className="flex mt-10">
+     <div className="w-2/12 ">  
         <FiltersAside />  
       </div>  
-      <div className="w-10/12">  
+      <div className="w-10/12 ml-14">  
         <ProductList />  
-      </div>  
+      </div> 
+      </div> 
     </div>  
   );  
 }

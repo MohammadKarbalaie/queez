@@ -8,8 +8,7 @@ import Modal from '../components/Modal';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { clearCart } from '../redux/CartSlice';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
+
 
 const CheckoutSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -27,7 +26,7 @@ const CheckoutPage: React.FC = () => {
   
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
-  const router = useRouter();
+
 
   const { register, handleSubmit, formState: { errors } } = useForm<CheckoutFormInputs>({
     resolver: zodResolver(CheckoutSchema),
@@ -41,13 +40,13 @@ const CheckoutPage: React.FC = () => {
   const handleModalClose = () => {
     setShowModal(false);
     dispatch(clearCart());
-    router.push('/'); 
+    
   };
 
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
 
   return (
-    <div className="p-8 bg-gray-700 rounded-lg">
+    <div className="w-96 p-8 bg-gray-700 rounded-lg">
       <h2 className="text-xl font-bold text-white">Enter Your Details</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 mt-4">
         <input placeholder="Name" className='rounded-xl outline-none px-2 py-2 border' {...register("name")} />
@@ -84,7 +83,7 @@ const CheckoutPage: React.FC = () => {
               <p className="text-lg"><strong>Cart Items:</strong></p>
               {cartItems.map((item) => (
                 <div key={item.id} className="border-b mt-6 py-2 flex items-center">
-                  <Image src={item.images} alt={item.title} width={80} height={80} />
+                  <img src={item.images} alt={item.title} width={80} height={80} />
                   <div className="ml-4">
                     <p>{item.title}</p>
                     <p>Price: ${item.price}</p>
